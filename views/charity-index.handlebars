@@ -1,6 +1,9 @@
 
 <h1>Organizations</h1>
-{{#each reviews}}
+
+<a href="/orgs/new">New Organization</a>
+
+{{#each orgs}}
 <h2>{{this.OrganizationName}}</h2>
 <small>{{this.Description}}</small>
 {{/each}}
