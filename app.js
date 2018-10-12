@@ -33,8 +33,8 @@ app.set('view engine', 'handlebars');
 // INDEX
 app.get('/', (req, res) => {
     Charity.find()
-        .then(orgs => {
-            res.render('charity-index', { orgs: orgs });
+        .then(charity => {
+            res.render('charity-index', { charity: charity });
         })
         .catch(err => {
             console.log(err);
@@ -46,17 +46,21 @@ app.get('/orgs/new', (req, res) => {
     res.render('orgs-new', {});
 })
 
-// CREATE
-app.post('/orgs', (req, res) => {
-    console.log(req.body);
-     
-})
 
 // CREATE
 app.post('/orgs', (req, res) => {
-    Charity.create(req.body).then((orgs) => {
-        console.log(orgs);
-        res.redirect('/');
+    Charity.create(req.body).then((charity) => {
+        console.log(charity);
+        res.redirect(`/orgs/${charity._id}`);
+    }).catch((err) => {
+        console.log(err.message);
+    })
+})
+
+// SHOW
+app.get('/orgs/:id', (req, res) => {
+    Charity.findById(req.params.id).then((charity) => {
+        res.render('orgs-show', { charity: charity })
     }).catch((err) => {
         console.log(err.message);
     })

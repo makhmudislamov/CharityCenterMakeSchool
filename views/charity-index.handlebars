@@ -4,6 +4,6 @@
 <a href="/orgs/new">New Organization</a>
 
 {{#each orgs}}
-<h2>{{this.OrganizationName}}</h2>
+<h2><a href="/orgs/{{this._id}}">{{this.organizationName}}</a></h2>
 <small>{{this.Description}}</small>
 {{/each}}
