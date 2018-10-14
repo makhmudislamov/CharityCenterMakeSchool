@@ -1,4 +1,5 @@
 const express = require('express')
+const methodOverride = require('method-override')
 // INITIALIZE BODY-PARSER AND ADD IT TO APP
 const bodyParser = require('body-parser');
 const app = express()
@@ -6,7 +7,8 @@ const app = express()
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-
+// override with POST having ?_method=DELETE or ?_method=PUT
+app.use(methodOverride('_method'))
 
 
 const mongoose = require('mongoose');
@@ -64,4 +66,22 @@ app.get('/orgs/:id', (req, res) => {
     }).catch((err) => {
         console.log(err.message);
     })
+})
+
+// EDIT
+app.get('/orgs/:id/edit', (req, res) => {
+    Charity.findById(req.params.id, function (err, charity) {
+        res.render('orgs-edit', { charity: charity });
+    })
+})
+
+// UPDATE
+app.put('/orgs/:id', (req, res) => {
+    Charity.findByIdAndUpdate(req.params.id, req.body)
+        .then(charity => {
+            res.redirect(`/orgs/${charity._id}`)
+        })
+        .catch(err => {
+            console.log(err.message)
+        })
 })

@@ -1,0 +1,22 @@
+<fieldset>
+    
+    <!-- TITLE -->
+    <p>
+        <label for="org-title">Name of the Charity Organization</label><br>
+        <input id="org-title" type="text" name="organizationName" value="{{charity.organizationName}}" />
+    </p>
+
+    <!-- MOVIE TITLE -->
+    <p>
+        <label for="description-text">Description</label><br>
+        <textarea id="description-text" name="description" rows="10" />{{charity.description}}</textarea>
+        
+    </p>
+
+    <!-- DESCRIPTION -->
+    <p>
+        <label for="donation-need"> Funding Amount Needed</label><br>
+        <input id="donation-need" type="text" name="donationNeeded" value="{{charity.donationNeeded}}" />
+        
+    </p>
+</fieldset>

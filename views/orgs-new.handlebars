@@ -1,10 +1,14 @@
 <form method="POST" action="/orgs">
-    <fieldset>
+<legend>Input New Organization</legend>
+
+{{> orgs-form}}
+
+    {{!-- <fieldset>
         <legend>New Organization</legend>
         <!-- TITLE -->
         <p>
             <label for="review-title">Name of the Charity Organization</label><br>
-            <input id="review-title" type="text" name="title" />
+            <input id="review-title" type="text" name="organizationName" />
         </p>
 
 
@@ -19,7 +23,7 @@
             <label for="donation-need">Funding Amount Needed</label><br>
             <input id="donation-need" type="text" name="donationNeeded" />
         </p>
-    </fieldset>
+    </fieldset> --}}
 
        
 

@@ -5,10 +5,11 @@
 {{!-- <a href='/orgs/${charity._id}'>Organizations</a> --}}
 
 <div class="row">
-    {{#each orgs}}
+    {{#each charity}}
     <div class="col-sm-3">
         <h2><a href="/orgs/{{this._id}}">{{this.organizationName}}</a></h2>
-        <small>{{this.Description}}</small>
+        <small>Description: {{this.description}}</small> <br>
+        <small>Funding Amount Needed: {{this.donationNeeded}}</small>
     </div>
     {{/each}}
 </div>
