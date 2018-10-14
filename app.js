@@ -85,3 +85,13 @@ app.put('/orgs/:id', (req, res) => {
             console.log(err.message)
         })
 })
+
+// DELETE
+app.delete('/orgs/:id', function (req, res) {
+    console.log("DELETE the Organization")
+    Charity.findByIdAndRemove(req.params.id).then((charity) => {
+        res.redirect('/');
+    }).catch((err) => {
+        console.log(err.message);
+    })
+})

@@ -7,3 +7,10 @@
 
 
 <p><a href="/orgs/{{charity._id}}/edit">Edit</a></p>
+
+<!-- Delete button -->
+<p>
+    <form method="POST" action="/orgs/{{charity._id}}?_method=DELETE">
+        <button type="submit">Delete</button>
+    </form>
+</p>
