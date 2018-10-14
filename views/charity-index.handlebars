@@ -2,8 +2,16 @@
 <h1>Organizations</h1>
 
 <a href="/orgs/new">New Organization</a>
+{{!-- <a href='/orgs/${charity._id}'>Organizations</a> --}}
 
-{{#each orgs}}
-<h2><a href="/orgs/{{this._id}}">{{this.organizationName}}</a></h2>
-<small>{{this.Description}}</small>
-{{/each}}
+<div class="row">
+    {{#each orgs}}
+    <div class="col-sm-3">
+        <h2><a href="/orgs/{{this._id}}">{{this.organizationName}}</a></h2>
+        <small>{{this.Description}}</small>
+    </div>
+    {{/each}}
+</div>
+
+
+
