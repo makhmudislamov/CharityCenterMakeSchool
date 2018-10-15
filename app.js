@@ -12,10 +12,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // override with POST having ?_method=DELETE or ?_method=PUT
 app.use(methodOverride('_method'))
 
+const port = process.env.PORT || 3000;
+app.listen(port);
 
-app.listen(3000, () => {
-    console.log('App listening on port 3000!')
-})
+// app.listen(3000, () => {
+//     console.log('App listening on port 3000!')
+// })
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
