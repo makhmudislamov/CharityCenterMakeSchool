@@ -1,11 +1,16 @@
-<form method="POST" action="/orgs/{{charity._id}}?_method=PUT">
 
-<legend>Edit Organization Info</legend>
 
-{{> orgs-form}}
 
-    <!-- BUTTON -->
-    <p>
-        <button type="submit">Save Organization</button>
-    </p>
-</form>
+
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+        <form method="POST" action="/orgs/{{charity._id}}?_method=PUT">
+            <legend>Edit Organization Info</legend>
+            {{> orgs-form}}
+            <!-- BUTTON -->
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">Save Organization</button>
+            </div>
+        </form>
+    </div>
+</div>

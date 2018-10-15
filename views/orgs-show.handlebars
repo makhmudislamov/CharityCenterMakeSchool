@@ -1,16 +1,18 @@
-<a href="/">Back to Home
 
+<a href="/">Back to Home</a>
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
 
-    <h1>{{charity.organizationName}}</h1>
-    <h2>{{charity.description}}</h2> <br>
-    <h2>{{charity.donationNeeded}}</h2>
+        <h1>{{charity.organizationName}}</h1>
+        <h2>{{charity.description}}</h2> <br>
+        <h2>{{charity.donationNeeded}}</h2>
+        <p><a href="/orgs/{{charity._id}}/edit">Edit</a></p>
+        
+        <p>
 
-
-<p><a href="/orgs/{{charity._id}}/edit">Edit</a></p>
-
-<!-- Delete button -->
-<p>
-    <form method="POST" action="/orgs/{{charity._id}}?_method=DELETE">
-        <button type="submit">Delete</button>
-    </form>
-</p>
+            <form method="POST" action="/orgs/{{charity._id}}?_method=DELETE">
+                <button class="btn btn-primary" type="submit">Delete</button>
+            </form>
+        </p>
+    </div>
+</div>

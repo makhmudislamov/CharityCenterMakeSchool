@@ -1,22 +1,26 @@
+
+
+{{!-- WWWWWWWWWWWWWWW --}}
+
 <fieldset>
     
     <!-- TITLE -->
-    <p>
+    <div class="form-group">
         <label for="org-title">Name of the Charity Organization</label><br>
-        <input id="org-title" type="text" name="organizationName" value="{{charity.organizationName}}" />
-    </p>
-
-    <!-- MOVIE TITLE -->
-    <p>
-        <label for="description-text">Description</label><br>
-        <textarea id="description-text" name="description" rows="10" />{{charity.description}}</textarea>
-        
-    </p>
+        <input class="form-control" id="org-title" type="text" name="organizationName" value="{{charity.organizationName}}" />
+    </div>
 
     <!-- DESCRIPTION -->
-    <p>
+    <div class="form-group">
+        <label for="description-text">Description</label><br>
+        <textarea class="form-control" id="description-text" name="description" rows="10" />{{charity.description}}</textarea>
+    </div>
+
+    <!-- DONATION -->
+    <div class="form-group">
         <label for="donation-need"> Funding Amount Needed</label><br>
-        <input id="donation-need" type="text" name="donationNeeded" value="{{charity.donationNeeded}}" />
-        
-    </p>
+        <input class="form-control" id="donation-need" type="text" name="donationNeeded" value="{{charity.donationNeeded}}" />
+    </div>
+
+   
 </fieldset>
