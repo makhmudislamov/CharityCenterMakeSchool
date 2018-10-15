@@ -18,14 +18,6 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/charity-center'
 const port = process.env.PORT || 3000;
 app.listen(port);
 
-// app.listen(3000, () => {
-//     console.log('App listening on port 3000!')
-// })
-
-// app.listen(process.env.PORT || 3000, function () {
-//     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
-// });
-
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
