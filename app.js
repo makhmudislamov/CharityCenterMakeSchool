@@ -1,6 +1,7 @@
 const express = require('express')
 const methodOverride = require('method-override')
 const charities = require('./controllers/charities');
+const comments = require('./controllers/comments');
 const mongoose = require('mongoose');
 // INITIALIZE BODY-PARSER AND ADD IT TO APP
 const bodyParser = require('body-parser');
@@ -23,5 +24,6 @@ app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 charities(app);
+comments(app);
 
 module.exports = app;

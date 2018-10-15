@@ -1,4 +1,5 @@
 const Charity = require('../models/charity.js');
+const Comment = require('../models/comment.js');
 
 module.exports = function (app) {
 
@@ -30,13 +31,28 @@ module.exports = function (app) {
     })
 
     // SHOW
+    // app.get('/orgs/:id', (req, res) => {
+    //     Charity.findById(req.params.id).then((charity) => {
+
+    //         res.render('orgs-show', { charity: charity })
+    //     }).catch((err) => {
+    //         console.log(err.message);
+    //     })
+    // })
+
     app.get('/orgs/:id', (req, res) => {
-        Charity.findById(req.params.id).then((charity) => {
-            res.render('orgs-show', { charity: charity })
+        // find review
+        Charity.findById(req.params.id).then(charity => {
+            // fetch its comments
+            Comment.find({ charityId: req.params.id }).then(comments => {
+                // respond with the template with both values
+                res.render('orgs-show', { charity: charity, comments: comments })
+            })
         }).catch((err) => {
-            console.log(err.message);
-        })
-    })
+            // catch errors
+            console.log(err.message)
+        });
+    });
 
     // EDIT
     app.get('/orgs/:id/edit', (req, res) => {
