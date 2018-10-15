@@ -12,4 +12,14 @@ module.exports = function (app) {
         });
     });
 
+    // DELETE
+    app.delete('/orgs/comments/:id', function (req, res) {
+        console.log("DELETE comment")
+        Comment.findByIdAndRemove(req.params.id).then((comment) => {
+            res.redirect(`/orgs/${comment.charityId}`);
+        }).catch((err) => {
+            console.log(err.message);
+        })
+    })
+
 }
