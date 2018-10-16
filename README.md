@@ -1,6 +1,6 @@
 # Charity Center 
 
-**CHarity Center** is a web application that show a list of charity organizations - CRUD
+**Charity Center** is a web application that show a list of charity organizations - CRUD
 
 
 ## User Stories
