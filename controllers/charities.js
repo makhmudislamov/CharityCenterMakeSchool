@@ -31,15 +31,6 @@ module.exports = function (app) {
     })
 
     // SHOW
-    // app.get('/orgs/:id', (req, res) => {
-    //     Charity.findById(req.params.id).then((charity) => {
-
-    //         res.render('orgs-show', { charity: charity })
-    //     }).catch((err) => {
-    //         console.log(err.message);
-    //     })
-    // })
-
     app.get('/orgs/:id', (req, res) => {
         // find review
         Charity.findById(req.params.id).then(charity => {
@@ -81,5 +72,10 @@ module.exports = function (app) {
             console.log(err.message);
         })
     })
+
+    // SEARCH CHARITY
+    app.get('/search', (req, res) => {
+        res.render('orgs-index', { charity: [0] });
+    });
 
 }
