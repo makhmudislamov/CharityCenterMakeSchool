@@ -7,19 +7,19 @@
     <!-- TITLE -->
     <div class="form-group">
         <label for="org-title">Name of the Charity Organization</label><br>
-        <input class="form-control" id="org-title" type="text" name="organizationName" value="{{charity.organizationName}}" />
+        <input class="form-control" id="org-title" type="text" name="organizationName" value="{{charity.organizationName}}" required />
     </div>
 
     <!-- DESCRIPTION -->
     <div class="form-group">
         <label for="description-text">Description</label><br>
-        <textarea class="form-control" id="description-text" name="description" rows="10" />{{charity.description}}</textarea>
+        <textarea class="form-control" id="description-text" name="description" rows="10" required />{{charity.description}}</textarea>
     </div>
 
     <!-- DONATION -->
     <div class="form-group">
         <label for="donation-need"> Funding Amount Needed</label><br>
-        <input class="form-control" id="donation-need" type="text" name="donationNeeded" value="{{charity.donationNeeded}}" />
+        <input class="form-control" id="donation-need" type="text" name="donationNeeded" value="{{charity.donationNeeded}}" required />
     </div>
 
    
