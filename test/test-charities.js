@@ -111,4 +111,16 @@ describe('Charities', () => {
                 });
         });
     });
+
+    // SEARCH
+    it('should search ALL charities by name on /search GET', (done) => {
+        var charity = new Charity(sampleCharity);
+        chai.request(server)
+            .get('/search?term=norman')
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.should.be.html;
+                done();
+            });
+    });
 });

@@ -75,7 +75,16 @@ module.exports = function (app) {
 
     // SEARCH CHARITY
     app.get('/search', (req, res) => {
-        res.render('orgs-index', { charity: [0] });
+        term = new RegExp(req.query.term, 'i')
+
+        Charity.find({
+            $or: [
+                { 'organizationName': term },
+                { 'donationNeeded': term }
+            ]
+        }).exec((err, pets) => {
+            res.render('orgs-index', { charities: charities });
+        })
     });
 
 }
