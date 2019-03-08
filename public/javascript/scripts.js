@@ -5,12 +5,12 @@ if (document.querySelector('#new-org')) {
         let charity = {};
         const inputs = document.querySelectorAll('.form-control');
         for (const input of inputs) {
-            pet[input.name] = input.value;
+            charity[input.organziationName] = input.value;
         }
 
         axios.post('/orgs', charity)
             .then(function (response) {
-                window.location.replace(`/orgs/${response.data.pet._id}`);
+                window.location.replace(`/orgs/${response.data.charity._id}`);
             })
             .catch(function (error) {
                 const alert = document.getElementById('alert')

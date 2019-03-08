@@ -22,14 +22,27 @@ module.exports = function (app) {
 
 
     // CREATE
+    // app.post('/orgs', (req, res) => {
+    //     Charity.create(req.body).then((charity) => {
+    //         console.log(charity);
+    //         res.redirect(`/orgs/${charity._id}`);
+    //     }).catch((err) => {
+    //         console.log(err.message);
+    //     })
+    // });
+
     app.post('/orgs', (req, res) => {
-        Charity.create(req.body).then((charity) => {
-            console.log(charity);
-            res.redirect(`/orgs/${charity._id}`);
-        }).catch((err) => {
-            console.log(err.message);
-        })
-    })
+        var charity = new Charity(req.body);
+
+        charity.save()
+            .then((charity) => {
+                res.send({ charity: charity });
+            })
+            .catch((err) => {
+                // STATUS OF 400 FOR VALIDATIONS
+                res.status(400).send(err.errors);
+            });
+    });
 
     // SHOW
     app.get('/orgs/:id', (req, res) => {

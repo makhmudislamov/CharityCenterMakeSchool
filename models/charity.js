@@ -8,10 +8,12 @@ mongoosePaginate.paginate.options = {
 
 // MODEL
 const Charity = new Schema({
-    organizationName: String,
-    description: String,
-    donationNeeded: String
-})
+    organizationName: { type: String, required: true },
+    description: { type: String, required: true },
+    donationNeeded: { type: String, required: true }
+}, {
+    timestamps: true
+});
 
 Charity.plugin(mongoosePaginate);
 module.exports = mongoose.model('Charity', Charity);
