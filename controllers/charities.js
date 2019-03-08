@@ -82,8 +82,8 @@ module.exports = function (app) {
                 { 'organizationName': term },
                 { 'donationNeeded': term }
             ]
-        }).exec((err, pets) => {
-            res.render('orgs-index', { charities: charities });
+        }).exec((err, charities, comments) => {
+            res.render('orgs-index', { charities: charities, comments: comments });
         })
     });
 
