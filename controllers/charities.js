@@ -5,9 +5,10 @@ module.exports = function (app) {
 
         // INDEX
     app.get('/', (req, res) => {
-        Charity.find()
-            .then(charity => {
-                res.render('orgs-index', { charity: charity });
+        const page = req.query.page || 1
+        Charity.paginate({}, { page: page })
+            .then((results) => {
+                res.render('orgs-index', { charity: results.docs, pagesCount: results.pages });
             })
             .catch(err => {
                 console.log(err);

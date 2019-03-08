@@ -1,0 +1,61 @@
+
+//- <h1>Organizations</h1>
+
+//- <a href="/orgs/new">New Organization</a>
+
+
+//- <div class="row">
+//-     {{#each charity}}
+//-     <div class="col-sm-3">
+//-         <h2><a href="/orgs/{{this._id}}">{{this.organizationName}}</a></h2>
+//-         <small>Description: {{this.description}}</small> <br>
+//-         <small>Funding Amount Needed: {{this.donationNeeded}}</small>
+//-     </div>
+//-     {{/each}}
+//- </div>
+
+//- <nav aria-label="Page navigation example">
+//-     <ul class="pagination">
+//-         <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+//-         <li class="page-item"><a class="page-link" href="#">1</a></li>
+//-         <li class="page-item"><a class="page-link" href="#">2</a></li>
+//-         <li class="page-item"><a class="page-link" href="#">3</a></li>
+//-         <li class="page-item"><a class="page-link" href="#">Next</a></li>
+//-     </ul>
+//- </nav>
+
+extends layout
+
+block content
+.row
+each charity, index in chairities
+.col-sm-4.justify-content-center
+.card
+if pet.avatarUrl
+img.card-img-top(src=pet.avatarUrl + '-standard.', alt='Card image cap')
+else
+img.card-img-top(src=pet.picUrl, alt='Card image cap')
+.card-body
+h4.card-title= pet.name
+small.text-muted= pet.species
+p.card-text= pet.description
+.text-right
+a.card-link(href=`/pets/${pet._id}`) View #{pet.name}
+nav(aria-label='Page navigation example').d-flex.justify-content-center
+ul.pagination
+if currentPage > 1
+
+li.page-item
+if term
+a.page-link(href=`?term=${term}&page=${currentPage - 1}`) Previous
+else
+a.page-link(href=`?page=${currentPage - 1}`) Previous
+
+- var i = 1;
+while i <= pagesCount li.page-item if term a.page-link(href=`?term=${term}&page=${i}`)=i++ else
+    a.page-link(href=`?page=${i}`)=i++ if currentPage < pagesCount li.page-item if term
+    a.page-link(href=`?term=${term}&page=${parseInt(currentPage) + 1}`) Next else
+    a.page-link(href=`?page=${parseInt(currentPage) + 1}`) Next
+
+
+
