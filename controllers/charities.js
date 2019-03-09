@@ -5,10 +5,10 @@ module.exports = function (app) {
 
         // INDEX
     app.get('/', (req, res) => {
-        const page = req.query.page || 1
-        Charity.paginate({}, { page: page })
-            .then((results) => {
-                res.render('orgs-index', { charity: results.docs, pagesCount: results.pages });
+        // const page = req.query.page || 1
+        Charity.find()
+            .then((charities) => {
+                res.render('orgs-index', { charities: charities});
             })
             .catch(err => {
                 console.log(err);
@@ -22,27 +22,27 @@ module.exports = function (app) {
 
 
     // CREATE
-    // app.post('/orgs', (req, res) => {
-    //     Charity.create(req.body).then((charity) => {
-    //         console.log(charity);
-    //         res.redirect(`/orgs/${charity._id}`);
-    //     }).catch((err) => {
-    //         console.log(err.message);
-    //     })
-    // });
-
     app.post('/orgs', (req, res) => {
-        var charity = new Charity(req.body);
-
-        charity.save()
-            .then((charity) => {
-                res.send({ charity: charity });
-            })
-            .catch((err) => {
-                // STATUS OF 400 FOR VALIDATIONS
-                res.status(400).send(err.errors);
-            });
+        Charity.create(req.body).then((charity) => {
+            console.log(charity);
+            res.redirect(`/orgs/${charity._id}`);
+        }).catch((err) => {
+            console.log(err.message);
+        })
     });
+
+    // app.post('/orgs', (req, res) => {
+    //     var charity = new Charity(req.body);
+
+    //     charity.save()
+    //         .then((charity) => {
+    //             res.send({ charity: charity });
+    //         })
+    //         .catch((err) => {
+    //             // STATUS OF 400 FOR VALIDATIONS
+    //             res.status(400).send(err.errors);
+    //         });
+    // });
 
     // SHOW
     app.get('/orgs/:id', (req, res) => {
@@ -96,8 +96,9 @@ module.exports = function (app) {
                 { 'organizationName': term },
                 { 'donationNeeded': term }
             ]
-        }).exec((err, charities, comments) => {
-            res.render('orgs-index', { charities: charities, comments: comments });
+        }).exec((err, charities) => {
+        
+            res.render('orgs-index', { charities: charities });
         })
     });
 

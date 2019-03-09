@@ -1,0 +1,5 @@
+1. Simple Search - jquiery issue
+
+2. Pagination - while iteration of pages
+
+3. Validation - how to add error and double check axios
