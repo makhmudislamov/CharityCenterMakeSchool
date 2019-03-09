@@ -10,9 +10,9 @@
 * [X] Users can delete a charity (destroy)
 * [X] Users can edit a charity (edit/update)
 * [X] Users can comment on charities (comments#create)
-* [X] Users can delete comments (comments#destroy)
+* [X] Users can delete comments (comments#destroy)\
 **Added Later**
 * [X] Simple search
 * [X] Pagination
-* [X] Validation
+* [X] Validation and Error handling (99% done)
 

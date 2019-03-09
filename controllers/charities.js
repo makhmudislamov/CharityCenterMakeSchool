@@ -38,6 +38,21 @@ module.exports = function (app) {
         })
     });
 
+    // create with validation almost done-needs small bug fix
+    // app.post('/orgs', (req, res) => {
+    //     var charity = new Charity(req.body);
+
+    //     charity.save()
+    //         .then((charity) => {
+    //             res.send( { charity: charity });
+    //             console.log(charity)
+    //         })
+    //         .catch((err) => {
+    //             // STATUS OF 400 FOR VALIDATIONS
+    //             res.status(400).send(err.errors);
+    //         });
+    // });
+
     // SHOW
     app.get('/orgs/:id', (req, res) => {
         // find review
