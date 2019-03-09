@@ -3,22 +3,29 @@ const Comment = require('../models/comment.js');
 
 module.exports = function (app) {
 
-        // INDEX
+    // INDEX
     app.get('/', (req, res) => {
-        // const page = req.query.page || 1
-        Charity.find()
-            .then((charities) => {
-                res.render('orgs-index', { charities: charities});
-            })
-            .catch(err => {
-                console.log(err);
-            })
-    })
+        const currentPage = req.query.page || 1;
+        Charity.paginate({}, { limit: 3, offset: (currentPage - 1) * 3 }).then((results) => {
+            const pageNumbers = [];
+            for (let i = 1; i <= results.pages; i += 1) {
+                pageNumbers.push(i);
+            }
+            res.render('orgs-index',
+                {
+                    charities: results.docs,
+                    pagesCount: results.pages,
+                    currentPage
+                    
+                });
+        });
+    });
+
 
     // NEW
     app.get('/orgs/new', (req, res) => {
         res.render('orgs-new', {});
-    })
+    });
 
 
     // CREATE
@@ -30,19 +37,6 @@ module.exports = function (app) {
             console.log(err.message);
         })
     });
-
-    // app.post('/orgs', (req, res) => {
-    //     var charity = new Charity(req.body);
-
-    //     charity.save()
-    //         .then((charity) => {
-    //             res.send({ charity: charity });
-    //         })
-    //         .catch((err) => {
-    //             // STATUS OF 400 FOR VALIDATIONS
-    //             res.status(400).send(err.errors);
-    //         });
-    // });
 
     // SHOW
     app.get('/orgs/:id', (req, res) => {
@@ -64,7 +58,7 @@ module.exports = function (app) {
         Charity.findById(req.params.id, function (err, charity) {
             res.render('orgs-edit', { charity: charity });
         })
-    })
+    });
 
     // UPDATE
     app.put('/orgs/:id', (req, res) => {
@@ -75,7 +69,7 @@ module.exports = function (app) {
             .catch(err => {
                 console.log(err.message)
             })
-    })
+    });
 
     // DELETE
     app.delete('/orgs/:id', function (req, res) {
@@ -85,21 +79,32 @@ module.exports = function (app) {
         }).catch((err) => {
             console.log(err.message);
         })
-    })
+    });
 
     // SEARCH CHARITY
     app.get('/search', (req, res) => {
         term = new RegExp(req.query.term, 'i')
+        const currentPage = req.query.page || 1;
 
-        Charity.find({
+
+        Charity.paginate({
             $or: [
-                { 'organizationName': term },
-                { 'donationNeeded': term }
-            ]
-        }).exec((err, charities) => {
-        
-            res.render('orgs-index', { charities: charities });
-        })
+                { start: term },
+                { finish: term },
+            ],
+        },
+            { limit: 5, offset: (currentPage - 1) * 5 }).then((results) => {
+                const pageNumbers = [];
+                for (let i = 1; i <= results.pages; i += 1) {
+                    pageNumbers.push(i);
+                }
+                res.render('orgs-index', {
+                    charities: results.docs,
+                    pagesCount: results.pages,
+                    currentPage,
+                    term: req.query.term,
+                });
+            });
     });
 
 }

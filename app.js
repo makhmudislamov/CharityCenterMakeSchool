@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const app = express()
 var exphbs = require('express-handlebars');
+const helpers = require('handlebars-helpers')();
 
 
 
@@ -21,8 +22,17 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/charity-center'
 const port = process.env.PORT || 3000;
 app.listen(port);
 
+// view engine setup
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
+// helpers setup
+app.engine('handlebars', exphbs({
+    defaultLayout: 'main',
+    helpers: require('handlebars-helpers')(),
+}));
+
+
+
 app.use(express.static(path.join(__dirname, 'public')));
 charities(app);
 comments(app);

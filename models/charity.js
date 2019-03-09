@@ -1,7 +1,7 @@
 
 const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate');
-Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 mongoosePaginate.paginate.options = {
     limit: 3 // how many records on each page
 }
@@ -17,3 +17,5 @@ const Charity = new Schema({
 
 Charity.plugin(mongoosePaginate);
 module.exports = mongoose.model('Charity', Charity);
+
+// READY
